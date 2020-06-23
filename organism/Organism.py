@@ -14,4 +14,5 @@ class simGene():
     def __init__(self, key):
         self.key = key
 
-    
+
+    def initAttribute
