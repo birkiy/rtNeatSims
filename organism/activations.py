@@ -1,6 +1,6 @@
 
 
-import math
+from organism import math_util
 
 def sigmoid_activation(z):
     z = max(-60.0, min(60.0, 5.0 * z))
@@ -110,43 +110,3 @@ ActivationFunctionSet = [
     square_activation,
     cube_activation
 ]
-
-
-
-
-
-
-class ActivationFunctionSet(object):
-    """
-    Contains the list of current valid activation functions,
-    including methods for adding and getting them.
-    """
-
-    def __init__(self):
-        self.functions = {}
-        self.add('sigmoid', sigmoid_activation)
-        self.add('tanh', tanh_activation)
-        self.add('sin', sin_activation)
-        self.add('gauss', gauss_activation)
-        self.add('relu', relu_activation)
-        self.add('elu', elu_activation)
-        self.add('lelu', lelu_activation)
-        self.add('selu', selu_activation)
-        self.add('softplus', softplus_activation)
-        self.add('identity', identity_activation)
-        self.add('clamped', clamped_activation)
-        self.add('inv', inv_activation)
-        self.add('log', log_activation)
-        self.add('exp', exp_activation)
-        self.add('abs', abs_activation)
-        self.add('hat', hat_activation)
-        self.add('square', square_activation)
-        self.add('cube', cube_activation)
-
-    def add(self, name, function):
-        validate_activation(function)
-        self.functions[name] = function
-
-    def get(self, name):
-        f = self.functions.get(name)
-        return f
