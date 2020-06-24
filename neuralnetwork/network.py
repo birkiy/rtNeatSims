@@ -9,8 +9,8 @@ class Network:
     def __init__(self, input, output):
         self.nodes = []
         self.id = Id()
-        self.nodes += [Node(self.id.id(), -1) for _ in range(input)]
-        self.nodes += [Node(self.id.id(), 1) for _ in range(output)]
+        self.nodes += {Node(self.id.id(), -1): None for _ in range(input)}
+        self.nodes += {Node(self.id.id(), 1): None for _ in range(output)}
         self.nodedict = {node.id: node for node in self.nodes}
         self.edges = {}
 
@@ -56,7 +56,7 @@ class Network:
             self.edges[(begin.id, end.id)] = Edge(begin.id, end.id)
 
 
-    def add_node(self):
+    def add_node(self, value):
         if len(self.edges):
             key, edge = list(self.edges.items())[randint(0, len(self.edges.values())-1)]
             del self.edges[key]
@@ -66,7 +66,7 @@ class Network:
             edge2 = edge.copy_with_begin(id)
             self.edges[edge1.begin, edge1.end] = edge1
             self.edges[edge2.begin, edge2.end] = edge2
-            self.nodes += [Node(id, 0)]
+            self.nodes[Node(id, 0)] = value
             self.nodedict[id] = self.nodes[-1]
 
 
