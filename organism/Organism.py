@@ -22,11 +22,25 @@ class simGenome:
 
         # for node in sim.nodes:
 
-
     def size(self):
         num_enabled_connections = sum([1 for cg in self.edges.values() if cg.enabled])
         return len(self.nodes), num_enabled_connections
 
+
+    def add_connection(self, input_key, output_key, weight, enabled):
+        key = (input_key, output_key)
+        connection = simConnection(key)
+        connection.weight = weight
+        connection.enabled = enabled
+        self.edges[key] = connection
+
+
+
+class simConnection:
+    def __init__(self, key):
+        self.key = key
+        connection.weight = None
+        connection.enabled = None
 
 class configGenome:
     def __init__(self):
@@ -61,34 +75,3 @@ class simGene:
             v = self.clamp(v + gauss(0.0, mutate_power))
 
         setattr(self, "value", v)
-
-
-
-
-
-
-
-
-
-
-
-
-
-from organism.activations import *
-
-
-
-
-
-
-
-
-
-
-
-class simGene():
-    def __init__(self, key):
-        self.key = key
-
-
-    def initAttribute
