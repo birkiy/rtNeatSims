@@ -4,6 +4,9 @@ class Node:
         self.bias = 0
         self.type = type
 
+    def __hash__(self):
+        return self.id
+
     def __str__(self):
         return f'''
 ID #{self.id}
